@@ -11,7 +11,7 @@ pipeline {
 
         stage('Run Development Server') {
             steps {
-                bat 'start /B npm run dev -- --host 0.0.0.0'
+                bat 'call npm run dev'
             }
         }
 
