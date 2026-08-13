@@ -29,7 +29,10 @@ pipeline {
 
         stage('Run Website') {
             steps {
-                bat 'start "" /B cmd /c "npx serve -s dist -l 8081"'
+                bat '''
+                set JENKINS_NODE_COOKIE=dontKillMe
+                start "" cmd /c "npx serve -s dist -l 8081"
+                '''
             }
         }
     }
