@@ -29,10 +29,7 @@ pipeline {
 
         stage('Run Website') {
             steps {
-                bat '''
-                start "" /B cmd /c "npx serve -s dist -l 8081"
-                timeout /t 5 /nobreak
-                '''
+                bat 'start "" /B cmd /c "npx serve -s dist -l 8081"'
             }
         }
     }
