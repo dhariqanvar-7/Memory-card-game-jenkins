@@ -18,9 +18,20 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat '''
-                if not exist "C:\\ProgramData\\Jenkins\\.jenkins\\userContent\\memorycard" mkdir "C:\\ProgramData\\Jenkins\\.jenkins\\userContent\\memorycard"
+                if not exist "C:\\ProgramData\\Jenkins\\.jenkins\\userContent\\memorycard" (
+                    mkdir "C:\\ProgramData\\Jenkins\\.jenkins\\userContent\\memorycard"
+                )
 
                 xcopy /E /I /Y "dist\\*" "C:\\ProgramData\\Jenkins\\.jenkins\\userContent\\memorycard\\"
+                '''
+            }
+        }
+
+        stage('Run Website') {
+            steps {
+                bat '''
+                start "" /B cmd /c "npx serve -s dist -l 8081"
+                timeout /t 5 /nobreak
                 '''
             }
         }
@@ -29,6 +40,7 @@ pipeline {
     post {
         success {
             echo 'Memory Card Game pipeline executed successfully!'
+            echo 'Website URL: http://localhost:8081'
         }
 
         failure {
