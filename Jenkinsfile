@@ -9,12 +9,6 @@ pipeline {
             }
         }
 
-        stage('Run Development Server') {
-            steps {
-                bat 'call npm run dev'
-            }
-        }
-
         stage('Build Application') {
             steps {
                 bat 'call npm run build'
