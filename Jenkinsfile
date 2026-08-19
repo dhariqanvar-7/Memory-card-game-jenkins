@@ -38,13 +38,16 @@ pipeline {
     }
 
     post {
-        success {
-            echo 'Memory Card Game pipeline executed successfully!'
-            echo 'Website URL: http://localhost:8081'
-        }
-
-        failure {
-            echo 'Pipeline failed!'
-        }
+    success {
+        echo 'Memory Card Game pipeline executed successfully!'
+        echo '========================================'
+        echo 'Memory Card Game URL:'
+        echo 'http://localhost:8081'
+        echo '========================================'
     }
+
+    failure {
+        echo 'Pipeline failed!'
+    }
+}
 }
